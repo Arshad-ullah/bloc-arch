@@ -17,3 +17,8 @@ class StringEvent extends CounterEvent {
   String txt;
   StringEvent({required this.txt});
 }
+
+class StringDeleteEvent extends CounterEvent {
+  String txt;
+  StringDeleteEvent({required this.txt});
+}

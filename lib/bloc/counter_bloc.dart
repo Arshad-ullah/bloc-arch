@@ -17,5 +17,11 @@ class CounterBloc extends Bloc<CounterEvent, CounterState> {
         emit(StringState(nameList: nameList));
       }
     });
+
+    on<StringDeleteEvent>((deleteEvent));
+  }
+  void deleteEvent(StringDeleteEvent event, Emitter<CounterState> emit) {
+    nameList.remove(event.txt.toString());
+    emit(StringState(nameList: nameList));
   }
 }

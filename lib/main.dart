@@ -5,6 +5,8 @@ import 'package:bloc_one/form/bloc/login_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'detail_screen.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -17,6 +19,7 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: (context) => CounterBloc(),
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
@@ -34,6 +37,24 @@ class CounterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final counterBloc = context.read<CounterBloc>();
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => BlocProvider(
+                    create: (context) => LoginBloc(),
+                    child: DetailScreen(),
+                  ),
+                ),
+              );
+            },
+            icon: Icon(Icons.add),
+          ),
+        ],
+      ),
       body: SafeArea(
         child: BlocBuilder<CounterBloc, CounterState>(
           builder: (context, state) {
