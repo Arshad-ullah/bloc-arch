@@ -56,7 +56,7 @@ class CounterScreen extends StatelessWidget {
         ],
       ),
       body: SafeArea(
-        child: BlocBuilder<CounterBloc, CounterState>(
+        child: counterBloc.isLoading? Center(child: CircularProgressIndicator(),):BlocBuilder<CounterBloc, CounterState>(
           builder: (context, state) {
             if (state is StringState) {
               return Container(
@@ -93,7 +93,10 @@ class CounterScreen extends StatelessWidget {
                   ],
                 ),
               );
-            } else {
+            }
+          
+            
+            else {
               return Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(

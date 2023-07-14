@@ -10,6 +10,11 @@ class IncrementState extends CounterState {
   IncrementState({required this.value});
 }
 
+class LoadingState extends CounterState
+{
+  
+}
+
 class StringState extends CounterState {
   List nameList = [];
   StringState({required this.nameList});

@@ -7,9 +7,16 @@ part 'counter_state.dart';
 
 class CounterBloc extends Bloc<CounterEvent, CounterState> {
   List nameList = [];
+  bool isLoading=false;
   TextEditingController textEditingController = TextEditingController();
   CounterBloc() : super(CounterInitial()) {
-    on<StringEvent>((event, emit) {
+  
+
+  
+    Future.delayed(Duration(seconds: 3),()
+    {
+    isLoading=true;
+      on<StringEvent>((event, emit) {
       if (nameList.contains(event.txt)) {
         print("Already present");
       } else {
@@ -19,6 +26,8 @@ class CounterBloc extends Bloc<CounterEvent, CounterState> {
     });
 
     on<StringDeleteEvent>((deleteEvent));
+    });
+    
   }
   void deleteEvent(StringDeleteEvent event, Emitter<CounterState> emit) {
     nameList.remove(event.txt.toString());
